@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Atlas</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <main id="atlas">
+    <header class="head">
+      <h1>Atlas</h1>
+      <div class="meta">
+        <span id="status" class="status">…</span>
+        <span id="summoner" class="summoner"></span>
+        <span id="lastMatch" class="last-match"></span>
+      </div>
+    </header>
+
+    <section class="block">
+      <h2>Signals</h2>
+      <ul id="signals" class="signals"></ul>
+    </section>
+
+    <section id="insightBlock" class="block" hidden>
+      <h2>◈ Interpretazione</h2>
+      <div id="insight" class="insight"></div>
+    </section>
+
+    <section id="rankBlock" class="block" hidden>
+      <h2>Rank</h2>
+      <div id="rank" class="rank"></div>
+    </section>
+
+    <section id="focusBlock" class="block" hidden>
+      <h2>Focus</h2>
+      <ul id="focus" class="signals"></ul>
+    </section>
+
+    <section id="batteryBlock" class="block" hidden>
+      <h2>Sessione</h2>
+      <div id="battery" class="battery"></div>
+    </section>
+
+    <section class="block">
+      <h2>Coach</h2>
+      <ul id="coach" class="coach"></ul>
+    </section>
+
+    <p id="error" class="error" hidden></p>
+
+    <footer class="foot">
+      <span id="lastUpdated"></span>
+    </footer>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>

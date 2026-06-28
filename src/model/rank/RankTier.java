@@ -1,0 +1,5 @@
+package model.rank;
+
+public enum RankTier {
+    IRON, BRONZE, SILVER, GOLD, PLATINUM, EMERALD, DIAMOND, MASTER, GRANDMASTER, CHALLENGER, UNKNOWN
+}

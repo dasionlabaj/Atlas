@@ -1,0 +1,246 @@
+:root {
+  --bg: #0d0f12;
+  --panel: #14171c;
+  --line: #232830;
+  --text: #e6e9ef;
+  --dim: #7c8696;
+  --accent: #5b8def;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 15px/1.5 "Segoe UI", system-ui, sans-serif;
+  display: flex;
+  justify-content: center;
+  padding: 48px 16px;
+}
+
+#atlas {
+  width: 100%;
+  max-width: 460px;
+}
+
+.head h1 {
+  margin: 0;
+  font-size: 34px;
+  font-weight: 300;
+  letter-spacing: 6px;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 6px;
+  color: var(--dim);
+  font-size: 13px;
+}
+
+.status {
+  color: var(--accent);
+  text-transform: lowercase;
+}
+.status[data-status="IDLE"] { color: var(--dim); }
+.status[data-status="OBSERVING"] { color: var(--accent); }
+
+.block {
+  margin-top: 36px;
+}
+
+.block h2 {
+  margin: 0 0 12px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+ul { list-style: none; margin: 0; padding: 0; }
+
+.signals li {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 14px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+.signals .name { letter-spacing: 1px; }
+.signals .value { color: var(--dim); font-variant-numeric: tabular-nums; }
+
+/* Signals = cassetti espandibili (<details>). Scoped su #signals per non toccare
+   il blocco Focus, che condivide la classe .signals. */
+#signals > li {
+  display: block;          /* annulla il grid condiviso di .signals li */
+  padding: 0;
+  background: none;
+  border: none;
+}
+
+.signal {                  /* l'elemento <details> è la card */
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.signal > summary {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 14px;
+  cursor: pointer;
+  list-style: none;        /* via il marker di default: ne disegno uno discreto */
+}
+.signal > summary::-webkit-details-marker { display: none; }
+
+.signal > summary .name::before {
+  content: "▸";
+  color: var(--dim);
+  margin-right: 8px;
+  font-size: 11px;
+  display: inline-block;
+  transition: transform .15s ease;
+}
+.signal[open] > summary .name::before { transform: rotate(90deg); }
+
+.signal .detail {
+  margin: 0;
+  padding: 4px 14px 12px;
+  border-top: 1px solid var(--line);
+}
+.signal .detail > div {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 10px;
+  padding: 3px 0;
+}
+.signal .detail dt { color: var(--dim); font-size: 13px; }
+.signal .detail dd { margin: 0; font-variant-numeric: tabular-nums; }
+
+.rank {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 14px;
+  padding: 14px 16px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.rank .predicted { font-size: 20px; letter-spacing: 2px; }
+.rank .conf { color: var(--dim); font-size: 12px; letter-spacing: 1px; text-transform: uppercase; }
+.rank .gap { width: 100%; margin: 4px 0 0; color: var(--dim); font-size: 13px; }
+
+.signals .trend { color: var(--dim); font-size: 13px; }
+
+.battery {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding: 12px 16px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.battery .value { font-size: 20px; font-variant-numeric: tabular-nums; }
+.battery .label { color: var(--dim); font-size: 13px; }
+
+.coach li {
+  padding: 14px 16px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-left: 2px solid var(--accent);
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+.coach .observation { margin: 0 0 6px; }
+.coach .hypothesis { margin: 0 0 10px; color: var(--dim); font-style: italic; }
+.coach .confidence {
+  margin: 0;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: var(--dim);
+  text-transform: uppercase;
+}
+
+/* Evidenze: il cassetto riusabile. "Da cosa nasce questa affermazione?"
+   Stesso componente per Coach e Interpretazione: una sola grammatica. */
+.evidence { margin-top: 12px; }
+.evidence > summary {
+  cursor: pointer;
+  list-style: none;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+.evidence > summary::-webkit-details-marker { display: none; }
+.evidence > summary::before {
+  content: "▸";
+  margin-right: 8px;
+  font-size: 11px;
+  display: inline-block;
+  transition: transform .15s ease;
+}
+.evidence[open] > summary::before { transform: rotate(90deg); }
+.ev-list {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.ev {
+  font-size: 13px;
+  padding: 3px 11px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--text);
+}
+.ev::before { content: "• "; color: var(--accent); }
+.ev-source { color: var(--text); }
+.ev-desc { color: var(--dim); }
+.ev-desc::before { content: " · "; color: var(--dim); }
+
+/* Interpretazione: l'ipotesi della partita. La headline è la frase, non un voto. */
+.insight {
+  padding: 14px 16px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-left: 2px solid var(--accent);
+  border-radius: 8px;
+}
+.insight .title { margin: 0 0 6px; font-size: 16px; }
+.insight .hypothesis { margin: 0 0 10px; }
+.insight .confidence {
+  margin: 0;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: var(--dim);
+  text-transform: uppercase;
+}
+
+.foot {
+  margin-top: 32px;
+  text-align: right;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: var(--dim);
+}
+
+.error {
+  margin-top: 32px;
+  padding: 12px 14px;
+  background: #2a1417;
+  border: 1px solid #5a2630;
+  border-radius: 8px;
+  color: #f0a8b0;
+}
