@@ -29,6 +29,7 @@ Thumbs.db
 # Stato locale del training (generato, non versionare)
 perceptron-state.json
 learning-state.json
+/learning-log.txt
 
 # File temporanei di compilazione
 sources.txt
@@ -54,9 +55,9 @@ memory/rank-prediction-history.csv
 
 # Dati di runtime: memoria partite, snapshot, export, report
 memory/*.json
-snapshot/
-export/
-reports/
+/snapshot/
+/export/
+/reports/
 
 # Memoria interna di Claude Code (non è parte del progetto)
 .claude/
