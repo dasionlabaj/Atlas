@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="dark">
-  <title>Atlas · Emma Avatar Concept 0.1</title>
+  <title>Atlas · An Open Invitation · Avatar Concept 0.2</title>
   <style>
     :root { color-scheme: dark; --bg:#0b0c16; --panel:#141726; --panel2:#1b2033; --border:#343951; --ink:#f5f0ea; --muted:#acb1c5; --accent:#e8bc99; --accent2:#b18edb; font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; }
     * { box-sizing:border-box; } body { margin:0; min-height:100vh; background:radial-gradient(circle at 18% 4%,#30304c 0,transparent 35%),radial-gradient(circle at 89% 100%,#211933 0,transparent 40%),var(--bg); color:var(--ink); }
@@ -52,8 +52,20 @@
     textarea::placeholder { color:#818ba6; } .send { border:0; border-radius:10px; padding:12px 17px; font-weight:760; background:var(--accent); color:#2b1d21; }
     .foot { padding:0 23px 17px; color:var(--muted); font-size:.73rem; line-height:1.6; }
     .foot strong { color:#e5c8ad; } 
-    @media(max-width:850px) { .layout {grid-template-columns:1fr;} .portrait svg {max-height:285px;} .chat {min-height:560px;} }
-    @media(max-width:480px) { .shell {width:calc(100% - 18px); padding-top:12px;} .profile,.chat {border-radius:18px;} .profile-copy {padding:20px;} .conversation {padding:14px;} .chat-head {padding:16px;} .compose {margin:0 12px 14px;} .send {padding:12px;} }
+    .intro { display:grid; grid-template-columns:minmax(0,1.55fr) minmax(235px,.75fr); gap:26px; margin-bottom:22px; padding:33px 35px; border:1px solid #59516a; border-radius:24px; background:linear-gradient(120deg,#262337,#1c2034 68%,#282034); box-shadow:0 15px 45px #0003; }
+    .intro h2 { font-size:clamp(1.6rem,3.5vw,2.7rem); line-height:1.08; letter-spacing:-.045em; margin:0 0 14px; max-width:520px; }
+    .intro p { max-width:620px; color:#d4d0dc; line-height:1.62; font-size:.93rem; }
+    .intro .eyebrow { color:#e6c1a9; }
+    .intro-actions { display:flex; flex-wrap:wrap; gap:11px; margin-top:23px; }
+    .intro-actions a { display:inline-flex; text-decoration:none; justify-content:center; align-items:center; padding:12px 17px; font-size:.88rem; font-weight:750; border-radius:12px; }
+    .primary-link { background:#e8bc99; color:#28202a; }
+    .secondary-link { border:1px solid #75677c; color:#f5e6dc; }
+    .path-card { align-self:center; border:1px solid #ffffff20; background:#141626bb; border-radius:17px; padding:20px; }
+    .path-card h3 { margin:0 0 14px; font-size:1rem; font-weight:780; }
+    .path-card ol { padding-left:20px; margin:0; display:grid; gap:11px; color:#c6c4d3; font-size:.82rem; line-height:1.45; }
+    .mini-note { display:block; color:#aeacc1; margin-top:16px; font-size:.73rem; line-height:1.55; }
+    @media(max-width:850px) { .intro {grid-template-columns:1fr;}  .layout {grid-template-columns:1fr;} .portrait svg {max-height:285px;} .chat {min-height:560px;} }
+    @media(max-width:480px) { .intro {padding:21px; border-radius:18px;}  .shell {width:calc(100% - 18px); padding-top:12px;} .profile,.chat {border-radius:18px;} .profile-copy {padding:20px;} .conversation {padding:14px;} .chat-head {padding:16px;} .compose {margin:0 12px 14px;} .send {padding:12px;} }
     @media(prefers-reduced-motion:reduce) { .orbit {animation:none;} .conversation {scroll-behavior:auto;} }
   </style>
 </head>
@@ -61,10 +73,31 @@
 <div class="shell">
   <header class="top">
     <div class="brand"><span class="mark" aria-hidden="true">◇</span> ATLAS <span style="opacity:.35">/</span> AVATAR LAB</div>
-    <div class="tag">Prototipo indipendente · v0.1 · nessun backend</div>
+    <div class="tag">Prototipo indipendente · v0.2 · nessun backend</div>
   </header>
+  <section class="intro" aria-labelledby="introTitle">
+    <div>
+      <p class="eyebrow">A personal note meets a software experiment</p>
+      <h2 id="introTitle">A letter is human.<br>An interface can make it easier to explore.</h2>
+      <p>I'm Dasion, the independent developer behind Atlas. I wrote a simple, respectful invitation to Emma Watson. This page is not an attempt to speak for her: it is a public demonstration of how a personal message can become an interactive creative prototype.</p>
+      <p>Start with the words I actually wrote. Then explore an imaginary character and what Atlas is trying to build. No account, coding skills or prior context required.</p>
+      <div class="intro-actions">
+        <a class="primary-link" href="#original-note">Read the actual invitation ↓</a>
+        <a class="secondary-link" href="#try-demo">Explore the demo ↓</a>
+      </div>
+    </div>
+    <aside class="path-card" aria-label="How to explore">
+      <h3>Explore in three steps</h3>
+      <ol>
+        <li>Read the original invitation, in the creator's own words</li>
+        <li>See the fictional avatar concept — not Emma herself</li>
+        <li>Try the local chat and learn how Atlas distinguishes evidence from interpretation</li>
+      </ol>
+      <span class="mini-note">Independent creative experiment. This page is not affiliated with Emma Watson, does not contact her, and does not indicate she has seen any part of it.</span>
+    </aside>
+  </section>
   <main class="layout">
-    <section class="profile" aria-labelledby="profileTitle">
+    <section class="profile" id="avatar-art" aria-labelledby="profileTitle">
       <div class="portrait">
         <div class="orbit" aria-hidden="true"></div>
         <span class="portrait-label">Concept illustration</span>
@@ -102,18 +135,18 @@
         <h1 id="profileTitle">Emma · Digital Concept</h1>
         <p class="description">Un avatar illustrato e un laboratorio conversazionale per esplorare come potrebbe funzionare un incontro immaginario, partendo dall'invito di Dasion.</p>
         <div class="notice"><strong>Trasparenza.</strong> Questo non è Emma Watson, non riproduce la sua voce e non rappresenta i suoi pensieri o sentimenti. Nessuna relazione o partecipazione della persona reale è implicata.</div>
-        <details>
-          <summary>Leggi il messaggio originale di Dasion</summary>
-          <blockquote>“Dear Emma Watson, ... would you be open to getting to know each other and perhaps becoming friends? There are no expectations or obligations attached to this invitation.”</blockquote>
+        <details id="original-note" open>
+          <summary>Leggi il messaggio originale di Dasion · Read the invitation</summary>
+          <blockquote>Dear Emma Watson,<br><br>My name is Dasion Labaj. I'm a software developer from Italy, and I work on an independent project called Atlas.<br><br>I'd like to ask you something simple and sincere: <strong>would you be open to getting to know each other and perhaps becoming friends?</strong><br><br>There are no expectations or obligations attached to this invitation. I respect your privacy, your independence, and your freedom not to respond.<br><br>Either way, I wish you well.<br><br>Warm greetings from Salento, Italy,<br><strong>Dasion Labaj</strong></blockquote>
           <p class="source"><a href="https://github.com/dasionlabaj/Atlas/blob/main/PERSONAL_INVITATION.md" target="_blank" rel="noopener noreferrer">Invito integrale nel repository Atlas ↗</a></p>
         </details>
       </div>
     </section>
-    <section class="chat" aria-label="Conversazione di prova con avatar">
+    <section class="chat" id="try-demo" aria-label="Conversazione di prova con avatar">
       <header class="chat-head">
         <div>
           <p class="chat-title">Stanza di conversazione</p>
-          <p class="chat-sub">Risposte locali guidate · nessuna connessione con Emma reale</p>
+          <p class="chat-sub">Demo guidata in italiano · nessuna connessione con Emma reale</p>
         </div>
         <button class="reset" id="reset" type="button">Ricomincia</button>
       </header>
