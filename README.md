@@ -1,10 +1,17 @@
-# Atlas
+# Atlas — by Dasion Labaj
 
-**An observation-first software project for understanding structured data.**
+**Observation-first software for understanding structured data, starting with *League of Legends* post-match analysis.**
 
 Atlas began with a question after a *League of Legends* match: **“What am I not seeing yet?”** Rather than offering live coaching or pretending to know a player's intentions, the project aims to turn recorded observations into inspectable, understandable signals.
 
 Atlas is an independent project created by **Dasion Labaj**.
+
+## Explore Atlas
+
+- **Creator:** [Dasion Labaj on GitHub](https://github.com/dasionlabaj).
+- **Project home and source:** [Atlas](https://github.com/dasionlabaj/Atlas) (this repository).
+- **Public concept demo:** [Atlas Preview](https://github.com/dasion1991-daxs/Atlas-Preview) — a separate, read-only browser preview using synthetic data. It is not the complete Atlas system.
+- **Why the project exists:** [Origin notes](Origin/00_Why.md).
 
 ## Principles
 
