@@ -1,0 +1,87 @@
+name: ATLAS - Riot Coordinator
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Run a synthetic demo or call Riot APIs with repository secret'
+        type: choice
+        options:
+          - demo
+          - live
+        default: demo
+        required: true
+      game_name:
+        description: 'Riot ID name (live only; visible in public workflow runs)'
+        type: string
+        required: false
+      tag_line:
+        description: 'Riot ID tag without # (live only; visible in public workflow runs)'
+        type: string
+        required: false
+      region:
+        description: 'Regional Match-v5 routing'
+        type: choice
+        options:
+          - europe
+          - americas
+          - asia
+          - sea
+        default: europe
+        required: true
+      count:
+        description: 'Recent Solo/Duo ranked matches (1-100)'
+        type: number
+        default: 20
+        required: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: atlas-riot-coordinator
+  cancel-in-progress: false
+
+jobs:
+  prism:
+    name: Audit observed matches
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout Atlas
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run offline regression tests (no key)
+        run: python -m unittest discover -s tools/riot/tests -v
+      - name: Synthetic demonstration
+        if: inputs.mode == 'demo'
+        run: python tools/riot/coordinator.py demo --output out/riot-summary.json
+      - name: Observe Riot match history (key from encrypted repository Secret)
+        if: inputs.mode == 'live'
+        env:
+          RIOT_API_KEY: ${{ secrets.RIOT_API_KEY }}
+          RIOT_GAME_NAME: ${{ inputs.game_name }}
+          RIOT_TAG_LINE: ${{ inputs.tag_line }}
+          RIOT_REGION: ${{ inputs.region }}
+          RIOT_COUNT: ${{ inputs.count }}
+        run: |
+          if [ -z "$RIOT_API_KEY" ]; then
+            echo "Repository secret RIOT_API_KEY is missing." >&2
+            exit 1
+          fi
+          python tools/riot/coordinator.py live \
+            --game-name "$RIOT_GAME_NAME" \
+            --tag-line "$RIOT_TAG_LINE" \
+            --region "$RIOT_REGION" \
+            --count "$RIOT_COUNT" \
+            --output out/riot-summary.json
+      - name: Save aggregate-only result (public artifact)
+        uses: actions/upload-artifact@v4
+        with:
+          name: atlas-riot-aggregate
+          path: out/riot-summary.json
+          if-no-files-found: error
+          retention-days: 7
