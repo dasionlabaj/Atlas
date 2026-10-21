@@ -67,7 +67,7 @@ def collect(game_name: str, tag_line: str, region: str, count: int, token: str,
         for index, mid in enumerate(ids,1):
             if mid in existing:
                 continue
-            print(f"[{index}/{len(ids)}] Reading official Riot match + timeline for {mid}",file=sys.stderr)
+            print(f"[{index}/{len(ids)}] Reading official Riot match and timeline", file=sys.stderr)
             match = get_json(region,f"/lol/match/v5/matches/{quote(mid)}",token)
             timeline = get_json(region,f"/lol/match/v5/matches/{quote(mid)}/timeline",token)
             file.write(json.dumps({"match":match,"timeline":timeline},ensure_ascii=False)+"\n")
