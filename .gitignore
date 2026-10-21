@@ -60,3 +60,8 @@ reports/
 
 # Memoria interna di Claude Code (non è parte del progetto)
 .claude/
+
+# Python caches / Riot response archives (never commit)
+__pycache__/
+*.pyc
+/tools/riot/data/
